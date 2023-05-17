@@ -4,6 +4,10 @@ on:
     branches:
       - main
 
+# needed to push to ghcr.io
+permissions: 
+  packages: write
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -29,9 +33,17 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
+          file: ./Dockerfile
           push: true
           tags: |
             ghcr.io/preston4tw/c7test:latest
             ghcr.io/preston4tw/c7test:amd64
             ghcr.io/preston4tw/c7test:arm64
           platforms: linux/amd64,linux/arm64
+          # https://docs.docker.com/build/ci/github-actions/cache/
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          # cache-from: type=registry,ref=preston4tw/c7test:latest
+          # cache-to: type=inline
+          # cache-from: type=registry,ref=preston4tw/c7test:buildcache
+          # cache-to: type=registry,ref=preston4tw/c7test:buildcache,mode=max
