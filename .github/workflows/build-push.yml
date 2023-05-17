@@ -35,10 +35,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: |
-            ghcr.io/preston4tw/c7test:latest
-            ghcr.io/preston4tw/c7test:amd64
-            ghcr.io/preston4tw/c7test:arm64
+          tags: ghcr.io/preston4tw/c7test:latest
           platforms: linux/amd64,linux/arm64
           # https://docs.docker.com/build/ci/github-actions/cache/
           cache-from: type=gha
