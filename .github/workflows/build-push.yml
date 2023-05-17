@@ -31,7 +31,7 @@ jobs:
           context: .
           push: false # true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/c7test:latest
-            ghcr.io/${{ github.repository_owner }}/c7test:amd64
-            ghcr.io/${{ github.repository_owner }}/c7test:arm64
+            ghcr.io/${{ github.repository_owner | lower }}/c7test:latest
+            ghcr.io/${{ github.repository_owner | lower }}/c7test:amd64
+            ghcr.io/${{ github.repository_owner | lower }}/c7test:arm64
           platforms: linux/amd64,linux/arm64
